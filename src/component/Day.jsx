@@ -15,7 +15,7 @@ export const Day = (props) => {
           {props?.weather?.current?.condition?.text}
         </p>
 
-        <div className="flex justify-between px-5">
+        <div className="flex justify-between px-5 pt-15">
           <House />
           <MapPin />
           <Heart />

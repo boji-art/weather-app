@@ -6,6 +6,8 @@ import { Night } from "@/component/Night";
 export default function Home() {
   const [weather, setWeather] = useState({});
   const [searchCity, setSearchCity] = useState("Ulaanbaatar");
+  const [searchValue, setSearchValue]=useState("");
+  const [error,setError]=useState("");
 
   const getWeather = async () => {
     try {
@@ -20,8 +22,29 @@ export default function Home() {
       console.log(error);
     }
   };
+  const getCities = async ()=>{
+    try{
+      const response =await fetch(
+        "https://countriesnow.space/api/v0.1/countries"
+      );console.log(getCities);
+      
+      const data = await response.json();
+     const result =data?.data?.filter((city)=>{
+      const findCities = city.cities.find((findCitie)=>findcitie==searchValue);
+      return findCities;
+     })
+     const city = result[0].cities.find((city) => city===searchValue);
+     setSearchValue(city);
+     }catch (error){
+      setError("No location found")
+      
+      
+     }
+  }
+
   // useEffect(()=>{
   //   getWeather ()
+  //   getCities ()
   // })
  
 
